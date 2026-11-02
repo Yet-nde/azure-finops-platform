@@ -42,11 +42,27 @@ A single resource group is being used for the development environment because th
 UK South is the primary deployment region.
 A £10 monthly subscription budget was configured before deploying workload resources to provide early visibility into PAYG spending.
 
+**Phase 2-Cost Managemnt and Governance**
+-[x] Explored Azure Cost Analysis <br />
+-[x] Defined subscription and project cost scopes <br />
+-[x] Defined project tagging strategy <br />
+-[x] Defined business-friendly cost categories <br />
+-[x] Documented cost governance decisions <br />
+
+**Cost Reporting Strategy** 
+
+The platform preserves Azure-native cost information for technical analysis while introducing business-friendly reporting categories for stakeholders. <br />
+
+Detailed documentation: <br />
++ docs/cost-governance.md
++ docs/cost-mapping.md
+
+
 Current Status
 -[x] Resource group created
 -[x] Governance tags applied
 -[x] PAYG safety budget configured
--[] Cost Management configured
+-[x] Cost Management configured
 -[] Action Group configured
 -[] Logic App deployed
 -[] Cost export configured
