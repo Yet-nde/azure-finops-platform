@@ -31,11 +31,11 @@ Configuration
 * Monthly safety budget: £10
 
 Governance Tags
-Tag             Value
-Environment     Dev
-Project         FinOpsPlatform
-CostCentre      Portfolio
-ManagedBy       Bicep
+ Tag             Value 
++ Environment     Dev
++ Project         FinOpsPlatform
++ CostCentre      Portfolio
++ ManagedBy       Bicep
 
 Design Decisions
 A single resource group is being used for the development environment because the resources share the same project lifecycle.
