@@ -30,19 +30,20 @@ Configuration
 * Environment: Development
 * Monthly safety budget: £10
 
-Governance Tags
- Tag             Value 
-+ Environment     Dev
-+ Project         FinOpsPlatform
-+ CostCentre      Portfolio
-+ ManagedBy       Bicep
+Governance Tags <br />
+|Tag   |          Value |
+| --- | --- |
+|Environment  |   Dev |
+|Project  |       FinOpsPlatform |
+|CostCentre  |    Portfolio |
+|ManagedBy   |    Bicep |
 
 Design Decisions
-A single resource group is being used for the development environment because the resources share the same project lifecycle.
-UK South is the primary deployment region.
+A single resource group is being used for the development environment because the resources share the same project lifecycle. <br />
+UK South is the primary deployment region. <br />
 A £10 monthly subscription budget was configured before deploying workload resources to provide early visibility into PAYG spending.
 
-**Phase 2-Cost Managemnt and Governance**
+**Phase 2-Cost Managemnt and Governance** <br />
 -[x] Explored Azure Cost Analysis <br />
 -[x] Defined subscription and project cost scopes <br />
 -[x] Defined project tagging strategy <br />
@@ -57,15 +58,23 @@ Detailed documentation: <br />
 + docs/cost-governance.md
 + docs/cost-mapping.md
 
+**Phase 3-Automated Cost Alerting** <br />
+-[x] Logic App deployed <br />
+-[x] Azure Monitor Action Group configured <br />
+-[x] Budget connected to Action Group <br />
+-[x] Automated email workflow configured <br />
+-[x] Alert workflow tested <br />
+-[x]Alerting architecture documented
 
-Current Status
--[x] Resource group created
--[x] Governance tags applied
--[x] PAYG safety budget configured
--[x] Cost Management configured
--[] Action Group configured
--[] Logic App deployed
--[] Cost export configured
--[] Azure Function deployed
--[] Workbook created
--[] Infrastructure converted to Bicep
+
+Current Status <br />
+-[x] Resource group created <br />
+-[x] Governance tags applied <br />
+-[x] PAYG safety budget configured <br />
+-[x] Cost Management configured <br />
+-[x] Action Group configured <br />
+-[x] Logic App deployed <br />
+-[] Cost export configured <br />
+-[] Azure Function deployed <br />
+-[] Workbook created <br />
+-[] Infrastructure converted to Bicep <br />
