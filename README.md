@@ -74,6 +74,13 @@ Detailed documentation: <br />
 -[x] Export delivery verified <br/>
 -[x] Cost export architecture documented
 
+**Phase 5-Weekly Cost Analysis** <br/>
+-[x] Python Axure Function developed <br/>
+-[x] Cost export data processed <br/>
+-[x] Managed identity configured <br/>
+-[x] Weekly report to be written to Azure Storage <br/>
+-[x] Function execution verified </br>
+
 
 Current Status <br />
 -[x] Resource group created <br />
@@ -83,6 +90,6 @@ Current Status <br />
 -[x] Action Group configured <br />
 -[x] Logic App deployed <br />
 -[x] Cost export configured <br />
--[] Azure Function deployed <br />
+-[x] Azure Function deployed <br />
 -[] Workbook created <br />
 -[] Infrastructure converted to Bicep <br />
