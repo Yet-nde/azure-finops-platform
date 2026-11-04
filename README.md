@@ -64,7 +64,15 @@ Detailed documentation: <br />
 -[x] Budget connected to Action Group <br />
 -[x] Automated email workflow configured <br />
 -[x] Alert workflow tested <br />
--[x]Alerting architecture documented
+-[x] Alerting architecture documented
+
+**Phase 4-Cost Data Export & Storage** <br />
+-[x] Azure Storage Account deployed <br/>
+-[x] Cost export container configured <br/>
+-[x] Daily Cost Management export configured <br/>
+-[x] Actual cost dataset exported <br/>
+-[x] Export delivery verified <br/>
+-[x] Cost export architecture documented
 
 
 Current Status <br />
@@ -74,7 +82,7 @@ Current Status <br />
 -[x] Cost Management configured <br />
 -[x] Action Group configured <br />
 -[x] Logic App deployed <br />
--[] Cost export configured <br />
+-[x] Cost export configured <br />
 -[] Azure Function deployed <br />
 -[] Workbook created <br />
 -[] Infrastructure converted to Bicep <br />
