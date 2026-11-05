@@ -81,6 +81,14 @@ Detailed documentation: <br />
 -[x] Weekly report to be written to Azure Storage <br/>
 -[x] Function execution verified </br>
 
+**Phase 6-FinOps Visibility Dashboard** <br/>
+-[x] Azure Workbook created <br/>
+-[x] Azure Resource Graph queries implemented <br/>
+-[x] Resource inventory visualized <br/>
+-[x] Governance tag compliance visualized <br/>
+-[x] Missing-tag detection implemented <br/>
+-[x] Business-category reporting implemented <br/>
+-[x] Dashboard definition version-controlled <br/>
 
 Current Status <br />
 -[x] Resource group created <br />
@@ -91,5 +99,5 @@ Current Status <br />
 -[x] Logic App deployed <br />
 -[x] Cost export configured <br />
 -[x] Azure Function deployed <br />
--[] Workbook created <br />
+-[x] Workbook created <br />
 -[] Infrastructure converted to Bicep <br />
