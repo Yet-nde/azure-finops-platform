@@ -222,9 +222,13 @@ __marimo__/
 #Azure Functions local settings
 local.settings.json
 
-# Local/private Azure cost data
+# Local reports and cost data
 sample-data/private/
 *.csv
 
 #Azure Functions build artifacts
 .python_packages/
+
+#Generated ARM templates
+infrastructure/main.json
+infrastructure/main.parameters.json
