@@ -232,3 +232,6 @@ sample-data/private/
 #Generated ARM templates
 infrastructure/main.json
 infrastructure/main.parameters.json
+
+# Local Bicep parameters containing secrets
+infrastructure/main.local.bicepparam
