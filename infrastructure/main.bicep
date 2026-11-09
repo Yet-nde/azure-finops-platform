@@ -59,6 +59,12 @@ param deploymentContainerContributorAssignmentName string
 @description('Existing cost Storage Blob Data Contributor role-assignment name')
 param costStorageContributorAssignmentName string
 
+@description('Azure resource name of the FinOps Workbook')
+param workbookResourceName string
+
+@description('Display name of the FinOps Workbook')
+param workbookDisplayName string
+
 var commonTags = {
   Environment: environment
   Project: projectName
@@ -113,3 +119,16 @@ module functionInfrastructure 'modules/function.bicep' = {
 
 output functionAppId string = functionInfrastructure.outputs.functionAppId
 output functionPrincipalId string = functionInfrastructure.outputs.functionPrincipalId
+
+module workbook 'modules/workbook.bicep' = {
+  name: 'workbookDeployment'
+
+  params: {
+    workbookResourceName: workbookResourceName
+    workbookDisplayName: workbookDisplayName
+    location: location
+    tags: commonTags
+  }
+}
+
+output workbookId string = workbook.outputs.workbookId

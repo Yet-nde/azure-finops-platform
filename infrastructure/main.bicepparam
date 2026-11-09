@@ -26,3 +26,6 @@ param functionAppSettings = {
   // Identity-based Function Storage and monitoring
   // settings are supplied through private deployment configuration.
 }
+
+param workbookResourceName = '2A3E2783-5BD4-4B3C-A92D-9BBC3A198610'
+param workbookDisplayName = 'Azure FinOps Cost & Governance Dashboard'
