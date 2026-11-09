@@ -233,6 +233,12 @@ sample-data/private/
 infrastructure/main.json
 infrastructure/main.parameters.json
 infrastructure/main.local.json
+infrastructure/subscription/budget.json
+infrastructure/subscription/budget.local.json
+infrastructure/subscription/cost-export.json
+infrastructure/subscription/cost-export.local.json
 
 # Local Bicep parameters containing secrets
 infrastructure/main.local.bicepparam
+infrastructure/subscription/budget.local.bicepparam
+infrastructure/subscription/cost-export.local.bicepparam
