@@ -90,6 +90,21 @@ Detailed documentation: <br />
 -[x] Business-category reporting implemented <br/>
 -[x] Dashboard definition version-controlled <br/>
 
+**Phase 7-Infrastructure as Code** <br/>
+-[x] Bicep project structure created <br/>
+-[x] Storage infrastructure migrated to Bicep <br/>
+-[x] Monitoring infrastructure migrated to Bicep <br/>
+-[x] Azure Function infrastructure migrated to Bicep <br/>
+-[x] Workbook infrastructure migrated to Bicep <br/>
+-[x] Budget resources represented as IaC <br/>
+-[x] Cost management resources represented as IaC <br/>
+-[x] Managed identities and RBAC defined as code <br/>
+-[x] Public and environment-specific parameters separated <br/>
+-[x] Bicep validation and What-if testing implemented
+-[x] Infrastructure deployments verified
+Detailed deployment, migration and validation instructions are available in `infrastructure/README.md`
+
+
 Current Status <br />
 -[x] Resource group created <br />
 -[x] Governance tags applied <br />
@@ -100,4 +115,4 @@ Current Status <br />
 -[x] Cost export configured <br />
 -[x] Azure Function deployed <br />
 -[x] Workbook created <br />
--[] Infrastructure converted to Bicep <br />
+-[x] Infrastructure converted to Bicep <br />

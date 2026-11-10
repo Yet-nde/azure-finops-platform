@@ -1,22 +1,22 @@
 targetScope = 'resourceGroup'
 
 @description('Primary location for all resources.')
-param location string = 'uksouth'
+param location string
 
 @description('Deployment environment.')
-param environment string = 'Dev'
+param environment string
 
 @description('Project name for the deployment.')
-param projectName string = 'FinOpsPlatform'
+param projectName string
 
 @description('Globally unique name for the storage account.')
 param storageName string
 
 @description('Name of the Azure Monitor Action Group')
-param actionGroupName string = 'ag-finops-budget-dev'
+param actionGroupName string
 
 @description('Short display name for the Action Group')
-param actionGroupShortName string = 'FinOpsAlert'
+param actionGroupShortName string
 
 @description('Resource ID of the Logic App to be invoked by the Action Group')
 param logicAppResourceId string
@@ -26,16 +26,16 @@ param logicAppResourceId string
 param logicAppCallbackUrl string
 
 @description('Name of the Function App')
-param functionAppName string = 'func-finops-dev-uks'
+param functionAppName string
 
 @description('Name of the Flex Consumption hosting plan')
-param functionPlanName string = 'ASP-rgfinopsdevuks-9500'
+param functionPlanName string
 
 @description('Name of the Function runtime Storage Account')
-param functionStorageName string = 'stgfinopsfuncdev'
+param functionStorageName string
 
 @description('Name of the Application Insights resource')
-param applicationInsightsName string = 'func-finops-dev-uks'
+param applicationInsightsName string 
 
 @description('Resource ID of the existing Log Analytics workspace')
 param logAnalyticsWorkspaceResourceId string

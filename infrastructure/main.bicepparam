@@ -1,31 +1,37 @@
 using none
 
+// General
 param location = 'uksouth'
 param environment = 'Dev'
 param projectName = 'FinOpsPlatform'
-param storageName = 'stgfinopsdev007' 
 
-param actionGroupName = 'ag-finops-budget-dev'
+// FinOps Storage
+param storageName = 'REPLACE-FINOPS-STORAGE-ACCOUNT-NAME' 
+
+// Monitoring and alerting
+param actionGroupName = 'REPLACE-ACTION-GROUP-NAME'
 param actionGroupShortName = 'FinOpsAlert'
-param logicAppResourceId = '/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc/resourceGroups/rg-finops-dev-uks/providers/Microsoft.Logic/workflows/logic-finops-alerts-dev'
+param logicAppResourceId = '/subscriptions/REPLACE-SUBSCRIPTION-ID/resourceGroups/REPLACE-RESOURCE-GROUP/providers/Microsoft.Logic/workflows/REPLACE-LOGIC-APP-NAME'
 
-param functionAppName = 'func-finops-dev-uks'
-param functionPlanName = 'ASP-rgfinopsdevuks-9500'
-param functionStorageName = 'stgfinopsfuncdev'
-param applicationInsightsName = 'func-finops-dev-uks'
+// Azure Functions
+param functionAppName = 'REPLACE-FUNCTION-APP-NAME'
+param functionPlanName = 'REPLACE-FUNCTION-PLAN-NAME'
+param functionStorageName = 'REPLACE-FUNCTION-STORAGE-ACCOUNT-NAME'
+param applicationInsightsName = 'REPLACE-APPLICATION-INSIGHTS-NAME'
 
-param logAnalyticsWorkspaceResourceId = '/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc/resourcegroups/rg-finops-dev-uks/providers/microsoft.operationalinsights/workspaces/defaultworkspace-c405faf8-bd9b-4f3d-96d2-5e5325306fbc-suk'
-param deploymentContainerName = 'app-package-func-finops-dev-uks-1b2f70e'
+param logAnalyticsWorkspaceResourceId = '/subscriptions/REPLACE-SUBSCRIPTION-ID/resourcegroups/REPLACE-RESOURCE-GROUP/providers/microsoft.operationalinsights/workspaces/REPLACE-LOG-ANALYTICS-WORKSPACE'
+param deploymentContainerName = 'REPLACE-FUNCTION-DEPLOYMENT-CONTAINER-NAME'
 
+// Function application settings
 param functionAppSettings = {
   COST_EXPORT_CONTAINER: 'cost-exports'
   COST_REPORT_CONTAINER: 'reports'
-  COST_STORAGE_ACCOUNT: 'stgfinopsdev007'
+  COST_STORAGE_ACCOUNT: 'REPLACE-FINOPS-STORAGE-ACCOUNT-NAME'
   TIMER_SCHEDULE: '0 0 9 * * 1'
 
   // Identity-based Function Storage and monitoring
   // settings are supplied through private deployment configuration.
 }
 
-param workbookResourceName = '2A3E2783-5BD4-4B3C-A92D-9BBC3A198610'
+param workbookResourceName = 'REPLACE-WORKBOOK-RESOURCE-NAME'
 param workbookDisplayName = 'Azure FinOps Cost & Governance Dashboard'
