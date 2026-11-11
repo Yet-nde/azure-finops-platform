@@ -242,3 +242,7 @@ infrastructure/subscription/cost-export.local.json
 infrastructure/main.local.bicepparam
 infrastructure/subscription/budget.local.bicepparam
 infrastructure/subscription/cost-export.local.bicepparam
+
+# Exclude local VS Code settings
+.vscode/launch.json
+.vscode/settings.json
