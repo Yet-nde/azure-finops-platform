@@ -1,1 +1,196 @@
-{"version":"Notebook/1.0","items":[{"type":1,"content":{"json":"# AZURE FINOPS COST MONITORING & GOVERNANCE PLATFORM\r\n\r\nCloud cost visibility, resource governance and automated FinOps reporting.\r\n\r\n+ Environment: Development\r\n+ Primary Region: UK South\r\n+ Project: FinOps Platform <br />\r\n\r\nThis dashboard provides visibility into the Azure resources supporting the FinOps platform and complements Azure Cost Management reporting and the automated weekly cost analysis workflow.\r\n\r\n"},"name":"text - 0"},{"type":9,"content":{"version":"KqlParameterItem/1.0","parameters":[{"id":"e7fa212a-94d6-4094-bd14-2a24d430b3e8","version":"KqlParameterItem/1.0","name":"Subscription","type":6,"isRequired":true,"typeSettings":{"additionalResourceOptions":[],"includeAll":false,"showDefault":false},"key":"e7fa212a-94d6-4094-bd14-2a24d430b3e8","value":"/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"}],"style":"pills","queryType":0,"resourceType":"microsoft.operationalinsights/workspaces"},"name":"parameters - 1"},{"type":1,"content":{"json":"# PROJECT RESOURCE VISIBILITY"},"name":"text - 10"},{"type":3,"content":{"version":"KqlItem/1.0","query":"Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| summarize Resources=count() by type\r\n| order by Resources desc","size":0,"title":"Resources by Azure Type","queryType":1,"resourceType":"microsoft.resourcegraph/resources","crossComponentResources":["/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"],"visualization":"barchart"},"customWidth":"50","name":"query - 3","styleSettings":{"maxWidth":"50"}},{"type":3,"content":{"version":"KqlItem/1.0","query":"Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| summarize Resources=count() by location\r\n| order by Resources desc","size":0,"title":"Resources by Region","queryType":1,"resourceType":"microsoft.resourcegraph/resources","crossComponentResources":["/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"],"visualization":"piechart"},"customWidth":"50","name":"query - 4","styleSettings":{"maxWidth":"50"}},{"type":1,"content":{"json":"# BUSINESS GOVERNANCE"},"name":"text - 11"},{"type":3,"content":{"version":"KqlItem/1.0","query":"Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| extend BusinessCategory = tostring(tags[\"BusinessCategory\"])\r\n| extend BusinessCategory =\r\n    iff(isempty(BusinessCategory), \"Uncategorised\", BusinessCategory)\r\n| summarize Resources=count() by BusinessCategory\r\n| order by Resources desc","size":0,"title":"Resources by Business Category","queryType":1,"resourceType":"microsoft.resourcegraph/resources","crossComponentResources":["/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"],"visualization":"barchart"},"customWidth":"30","name":"query - 7","styleSettings":{"maxWidth":"30"}},{"type":3,"content":{"version":"KqlItem/1.0","query":"Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| extend\r\n    Environment = tostring(tags[\"Environment\"]),\r\n    Project = tostring(tags[\"Project\"]),\r\n    CostCentre = tostring(tags[\"CostCentre\"]),\r\n    ManagedBy = tostring(tags[\"ManagedBy\"]),\r\n    BusinessCategory = tostring(tags[\"BusinessCategory\"])\r\n| project\r\n    name,\r\n    type,\r\n    Environment,\r\n    Project,\r\n    CostCentre,\r\n    ManagedBy,\r\n    BusinessCategory\r\n| order by name asc","size":0,"title":"Governance Tag Compliance","queryType":1,"resourceType":"microsoft.resourcegraph/resources","crossComponentResources":["/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"],"visualization":"table"},"customWidth":"70","name":"query - 5","styleSettings":{"maxWidth":"70"}},{"type":1,"content":{"json":"# GOVERNANCE EXCEPTIONS"},"name":"text - 12"},{"type":3,"content":{"version":"KqlItem/1.0","query":"Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| where\r\n    isempty(tostring(tags[\"Environment\"]))\r\n    or isempty(tostring(tags[\"Project\"]))\r\n    or isempty(tostring(tags[\"CostCentre\"]))\r\n    or isempty(tostring(tags[\"ManagedBy\"]))\r\n| project\r\n    name,\r\n    type,\r\n    resourceGroup\r\n| order by name asc","size":0,"title":"Resource Missing Required Governance Tags","queryType":1,"resourceType":"microsoft.resourcegraph/resources","crossComponentResources":["/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"],"visualization":"table"},"name":"query - 6"},{"type":1,"content":{"json":"# RESOURCE INVENTORY"},"name":"text - 13"},{"type":3,"content":{"version":"KqlItem/1.0","query":"Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| project\r\n    name,\r\n    type,\r\n    location,\r\n    resourceGroup\r\n| order by type asc","size":0,"title":"FinOps Platform Resources","queryType":1,"resourceType":"microsoft.resourcegraph/resources","crossComponentResources":["/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"],"visualization":"table"},"name":"query - 2"},{"type":1,"content":{"json":"### Cost Monitoring\r\n\r\nFinancial monitoring for this environment is provided by Azure Cost Management.\r\n\r\nThe FinOps platform includes:\r\n+ Subscription-level cost analysis\r\n+ £10 PAYG safety budget\r\n+ Automated budget threshold alerts\r\n+ Logic App email notifications\r\n+ Daily Cost Management exports\r\n+ Weekly severless cost analysis\r\n\r\nDetailed cost information remains avaialble through Azure Cost Management, while the automated reporting pipeline processes exported cost data for week-over-week analysis."},"name":"text - 8"},{"type":1,"content":{"json":"### Weekly Cost Analysis\r\nA timer-triggered Python Azure Function processes Cost Management export data from Azure Blob Storage.\r\n\r\nThe weekly report compares:\r\n+ Latest seven days of available costs\r\n+ Previous seven-day period\r\n+ Total spending change\r\n+ Percentage change\r\n+ Top Azure services\r\n+ Top resource groups\r\n+ Largest service-level cost increases\r\n\r\nReport output: `reports/weekly-cost-report.json`"},"name":"text - 9"}],"isLocked":true,"fallbackResourceIds":["azure monitor"]}
+{
+    "version": "Notebook/1.0",
+    "items": [
+        {
+            "type": 1,
+            "content": {
+                "json": "# AZURE FINOPS COST MONITORING & GOVERNANCE PLATFORM\r\n\r\nCloud cost visibility, resource governance and automated FinOps reporting.\r\n\r\n+ Environment: Development\r\n+ Primary Region: UK South\r\n+ Project: FinOps Platform <br />\r\n\r\nThis dashboard provides visibility into the Azure resources supporting the FinOps platform and complements Azure Cost Management reporting and the automated weekly cost analysis workflow.\r\n\r\n"
+            },
+            "name": "text - 0"
+        },
+        {
+            "type": 9,
+            "content": {
+                "version": "KqlParameterItem/1.0",
+                "parameters": [
+                    {
+                        "id": "e7fa212a-94d6-4094-bd14-2a24d430b3e8",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "Subscription",
+                        "type": 6,
+                        "isRequired": true,
+                        "typeSettings": {
+                            "additionalResourceOptions": [],
+                            "includeAll": false,
+                            "showDefault": false
+                        },
+                        "key": "e7fa212a-94d6-4094-bd14-2a24d430b3e8",
+                        "value": "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                    }
+                ],
+                "style": "pills",
+                "queryType": 0,
+                "resourceType": "microsoft.operationalinsights/workspaces"
+            },
+            "name": "parameters - 1"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "# PROJECT RESOURCE VISIBILITY"
+            },
+            "name": "text - 10"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| summarize Resources=count() by type\r\n| order by Resources desc",
+                "size": 0,
+                "title": "Resources by Azure Type",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                ],
+                "visualization": "barchart"
+            },
+            "customWidth": "50",
+            "name": "query - 3",
+            "styleSettings": {
+                "maxWidth": "50"
+            }
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| summarize Resources=count() by location\r\n| order by Resources desc",
+                "size": 0,
+                "title": "Resources by Region",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                ],
+                "visualization": "piechart"
+            },
+            "customWidth": "50",
+            "name": "query - 4",
+            "styleSettings": {
+                "maxWidth": "50"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "# BUSINESS GOVERNANCE"
+            },
+            "name": "text - 11"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| extend BusinessCategory = tostring(tags[\"BusinessCategory\"])\r\n| extend BusinessCategory =\r\n    iff(isempty(BusinessCategory), \"Uncategorised\", BusinessCategory)\r\n| summarize Resources=count() by BusinessCategory\r\n| order by Resources desc",
+                "size": 0,
+                "title": "Resources by Business Category",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                ],
+                "visualization": "barchart"
+            },
+            "customWidth": "30",
+            "name": "query - 7",
+            "styleSettings": {
+                "maxWidth": "30"
+            }
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| extend\r\n    Environment = tostring(tags[\"Environment\"]),\r\n    Project = tostring(tags[\"Project\"]),\r\n    CostCentre = tostring(tags[\"CostCentre\"]),\r\n    ManagedBy = tostring(tags[\"ManagedBy\"]),\r\n    BusinessCategory = tostring(tags[\"BusinessCategory\"])\r\n| project\r\n    name,\r\n    type,\r\n    Environment,\r\n    Project,\r\n    CostCentre,\r\n    ManagedBy,\r\n    BusinessCategory\r\n| order by name asc",
+                "size": 0,
+                "title": "Governance Tag Compliance",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                ],
+                "visualization": "table"
+            },
+            "customWidth": "70",
+            "name": "query - 5",
+            "styleSettings": {
+                "maxWidth": "70"
+            }
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "# GOVERNANCE EXCEPTIONS"
+            },
+            "name": "text - 12"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| where\r\n    isempty(tostring(tags[\"Environment\"]))\r\n    or isempty(tostring(tags[\"Project\"]))\r\n    or isempty(tostring(tags[\"CostCentre\"]))\r\n    or isempty(tostring(tags[\"ManagedBy\"]))\r\n| project\r\n    name,\r\n    type,\r\n    resourceGroup\r\n| order by name asc",
+                "size": 0,
+                "title": "Resource Missing Required Governance Tags",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                ],
+                "visualization": "table"
+            },
+            "name": "query - 6"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "# RESOURCE INVENTORY"
+            },
+            "name": "text - 13"
+        },
+        {
+            "type": 3,
+            "content": {
+                "version": "KqlItem/1.0",
+                "query": "Resources\r\n| where resourceGroup =~ \"rg-finops-dev-uks\"\r\n| project\r\n    name,\r\n    type,\r\n    location,\r\n    resourceGroup\r\n| order by type asc",
+                "size": 0,
+                "title": "FinOps Platform Resources",
+                "queryType": 1,
+                "resourceType": "microsoft.resourcegraph/resources",
+                "crossComponentResources": [
+                    "/subscriptions/c405faf8-bd9b-4f3d-96d2-5e5325306fbc"
+                ],
+                "visualization": "table"
+            },
+            "name": "query - 2"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### Cost Monitoring\r\n\r\nFinancial monitoring for this environment is provided by Azure Cost Management.\r\n\r\nThe FinOps platform includes:\r\n+ Subscription-level cost analysis\r\n+ ï¿½10 PAYG safety budget\r\n+ Automated budget threshold alerts\r\n+ Logic App email notifications\r\n+ Daily Cost Management exports\r\n+ Weekly severless cost analysis\r\n\r\nDetailed cost information remains avaialble through Azure Cost Management, while the automated reporting pipeline processes exported cost data for week-over-week analysis."
+            },
+            "name": "text - 8"
+        },
+        {
+            "type": 1,
+            "content": {
+                "json": "### Weekly Cost Analysis\r\nA timer-triggered Python Azure Function processes Cost Management export data from Azure Blob Storage.\r\n\r\nThe weekly report compares:\r\n+ Latest seven days of available costs\r\n+ Previous seven-day period\r\n+ Total spending change\r\n+ Percentage change\r\n+ Top Azure services\r\n+ Top resource groups\r\n+ Largest service-level cost increases\r\n\r\nReport output: `reports/weekly-cost-report.json`"
+            },
+            "name": "text - 9"
+        }
+    ],
+    "isLocked": true,
+    "fallbackResourceIds": [
+        "azure monitor"
+    ]
+}
