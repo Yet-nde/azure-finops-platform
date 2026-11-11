@@ -27,7 +27,7 @@ resource workbook 'Microsoft.Insights/workbooks@2023-06-01' = {
     version: 'Notebook/1.0'
     category: 'workbook'
     sourceId: 'azure monitor'
-    serializedData: loadTextContent('../workbook.json')
+    serializedData: loadTextContent('../../workbook/finops-dashboard.workbook.json')
   }
 }
 
