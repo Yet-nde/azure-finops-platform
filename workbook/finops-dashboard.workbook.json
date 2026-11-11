@@ -177,7 +177,7 @@
     {
       "type": 1,
       "content": {
-        "json": "### Cost Monitoring\r\n\r\nFinancial monitoring for this environment is provided by Azure Cost Management.\r\n\r\nThe FinOps platform includes:\r\n+ Subscription-level cost analysis\r\n+ £10 PAYG safety budget\r\n+ Automated budget threshold alerts\r\n+ Logic App email notifications\r\n+ Daily Cost Management exports\r\n+ Weekly serverless cost analysis\r\n\r\nDetailed cost information remains available through Azure Cost Management, while the automated reporting pipeline processes exported cost data for week-over-week analysis."
+        "json": "### Cost Monitoring\r\n\r\nFinancial monitoring for this environment is provided by Azure Cost Management.\r\n\r\nThe FinOps platform includes:\r\n+ Subscription-level cost analysis\r\n+ £10 PAYG safety budget\r\n+ Automated budget threshold alerts\r\n+ Logic App email notifications\r\n+ Daily Cost Management exports\r\n+ Weekly severless cost analysis\r\n\r\nDetailed cost information remains avaialble through Azure Cost Management, while the automated reporting pipeline processes exported cost data for week-over-week analysis."
       },
       "name": "text - 8"
     },

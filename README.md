@@ -100,8 +100,8 @@ Detailed documentation: <br />
 -[x] Cost management resources represented as IaC <br/>
 -[x] Managed identities and RBAC defined as code <br/>
 -[x] Public and environment-specific parameters separated <br/>
--[x] Bicep validation and What-if testing implemented <br/>
--[x] Infrastructure deployments verified <br/>
+-[x] Bicep validation and What-if testing implemented
+-[x] Infrastructure deployments verified
 Detailed deployment, migration and validation instructions are available in `infrastructure/README.md`
 
 
