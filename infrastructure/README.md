@@ -69,7 +69,7 @@ Existing resources were used as the starting point for the Infrastructure as Cod
 - Create and open the target `.bicep` file in VS Code.
 - Press Ctrl + Shift + P.
 - Search for and select `Bicep: Insert Resource`.
-- Paste the Reource ID.
+- Paste the Resource ID.
 - Press Enter.
 - Review the generated Bicep resource definition.
 
@@ -80,7 +80,7 @@ In VS Code:
 - Open the relevant `.bicep` file.
 - Press Ctrl + Shift + P.
 - Search for and select `Bicep: Generate Parameters File`
-- Review the generated paramters.
+- Review the generated parameters.
 - Separate public example values from the real environment-specific values.
 
 The repository uses two types of parameter files:
@@ -89,7 +89,7 @@ The repository uses two types of parameter files:
 
 Local parameter files are excluded through `.gitignore`. <br/>
 
-Generated reource definitions are not deployed without review because they can contain Azure-generated properties and environment-specific configuration.
+Generated resource definitions are not deployed without review because they can contain Azure-generated properties and environment-specific configuration.
 
 
 ## Deployment safety
@@ -102,12 +102,40 @@ Infrastructure changes are validated using:
 
 Azure Resource Manager What-If is used to preview predicted infrastructure changes before deployment.
 
+### What-if Review During IaC Migration
+
+During the migration of existing Portal-created resources to Bicep, What-if was used to distinguish expected ownership changes from unintended infrastructure changes.
+
+A key expected change was the governance tag:
+
+`ManagedBy: Portal`
+
+changing to:
+
+`ManagedBy: Bicep`
+
+This change was reviewed deliberately before deployment because it represented the transition of the resource from manually managed Portal configuration to Bicep-managed Infrastructure as Code.
+
+Before deployment, What-if output was reviewed for:
+
+- Expected `ManagedBy` tag changes from `Portal` to `Bicep`
+- Unexpected resource creation
+- Unexpected resource deletion
+- Resource replacement
+- Resource-name or location changes
+- Unexpected configuration changes
+- Changes to managed identity or RBAC configuration
+
+Only understood and expected changes were accepted before deployment.
+
+After deployment, What-if was run again to verify that the deployed infrastructure matched the Bicep definitions as closely as expected, allowing for known Azure provider-generated What-if noise.
+
 ## Deployment Commands 
 The following commands use PowerShell.
 ### Authentication
 - Sign in to Azure: 
 ```powershell
-`az login`
+az login
 ```
 - Check the active subscription: 
 ```powershell
@@ -200,7 +228,7 @@ az deployment sub what-if `
   --template-file infrastructure/subscription/budget.bicep `
   --parameters infrastructure/subscription/budget.local.bicepparam
 ```
-### Cost Management Budget
+### Cost Management Export
 - build
 ```powershell
 az bicep build `
@@ -242,5 +270,6 @@ az deployment sub what-if `
 ```
 ## Deployment Guidance
 Always review the output from what-if before deploying. <br/>
+Expected changes should be understood and documented. During the initial IaC migration, this included the intentional transition of the `ManagedBy` tag from `Portal` to `Bicep`.
 Unexpected resource creation, deletion, replacement or configuration changes should be investigated before proceeding. <br/>
 Environment-specific `.local.bicepparam` files are used for real deployments and must remain outside source control.
